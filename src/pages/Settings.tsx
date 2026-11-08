@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { UserRound, Bell, Palette, Save } from "lucide-react";
 
@@ -82,11 +81,11 @@ export default function Settings() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-[#26354A] dark:text-white">
+      <h2 className="text-2xl font-bold text-[#26354A] dark:text-[#26354A]">
         Settings
       </h2>
 
-      <p className="mb-8 mt-2 text-gray-500 dark:text-gray-400">
+      <p className="mb-8 mt-2 text-[#64748B] dark:text-[#64748B]">
         Manage your account and application preferences.
       </p>
 

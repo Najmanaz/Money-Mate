@@ -1,4 +1,3 @@
-
 import { Search, Bell, UserRound } from "lucide-react";
 
 interface NavbarProps {
@@ -44,9 +43,9 @@ export default function Navbar({ userName = "Najma" }: NavbarProps) {
             />
           </div>
 
-          <span className="text-sm font-semibold text-[#26354A] dark:text-gray-300">
+        <span className="text-sm font-semibold text-[#26354A] dark:text-[#26354A]">
             {userName}
-          </span>
+        </span>
 
         </div>
       </div>

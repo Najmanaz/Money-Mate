@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Plus, Trash2, Pencil, X } from "lucide-react";
 
@@ -123,11 +122,11 @@ export default function Transactions({
       {/* HEADER */}
       <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-[#26354A] dark:text-gray-100">
+          <h2 className="text-2xl font-bold text-[#26354A] dark:text-[#26354A]">
             Transactions
           </h2>
 
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-[#64748B] dark:text-[#64748B]">
             Manage your income and expenses.
           </p>
         </div>
