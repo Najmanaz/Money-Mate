@@ -8,13 +8,14 @@ import Transactions from "./pages/Transactions";
 import Analytics from "./pages/Analytics";
 import Goals from "./pages/Goals";
 import Settings from "./pages/Settings";
+import Users from "./pages/Users";
 
 import type { Transaction } from "./pages/Transactions";
 
-// Nama tempat penyimpanan data
+// Nama tempat penyimpanan data transaksi
 const STORAGE_KEY = "moneymate_transactions";
 
-// Mengambil data yang pernah disimpan
+// Mengambil data transaksi yang pernah disimpan
 function getSavedTransactions(): Transaction[] {
   try {
     const savedData = localStorage.getItem(STORAGE_KEY);
@@ -30,37 +31,38 @@ function App() {
 
   const [userName, setUserName] = useState("Najma");
 
-useEffect(() => {
-  function loadSettings() {
-    const saved = localStorage.getItem("moneymate-settings");
+  // Mengambil pengaturan pengguna
+  useEffect(() => {
+    function loadSettings() {
+      const saved = localStorage.getItem("moneymate-settings");
 
-    if (saved) {
-      const parsed = JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
 
-      setUserName(parsed.name || "Najma");
+        setUserName(parsed.name || "Najma");
 
-      document.documentElement.classList.toggle(
-        "dark",
-        Boolean(parsed.darkMode)
-      );
+        document.documentElement.classList.toggle(
+          "dark",
+          Boolean(parsed.darkMode)
+        );
+      }
     }
-  }
 
-  loadSettings();
+    loadSettings();
 
-  window.addEventListener("settingsUpdated", loadSettings);
+    window.addEventListener("settingsUpdated", loadSettings);
 
-  return () => {
-    window.removeEventListener("settingsUpdated", loadSettings);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("settingsUpdated", loadSettings);
+    };
+  }, []);
 
-  // Menyimpan transaksi
+  // Menyimpan data transaksi
   const [transactions, setTransactions] = useState<Transaction[]>(
     getSavedTransactions
   );
 
-  // Menyimpan data setiap kali transaksi berubah
+  // Menyimpan transaksi setiap kali ada perubahan
   useEffect(() => {
     localStorage.setItem(
       STORAGE_KEY,
@@ -68,6 +70,7 @@ useEffect(() => {
     );
   }, [transactions]);
 
+  // Mengatur halaman yang ditampilkan
   function renderPage() {
     switch (activePage) {
       case "Dashboard":
@@ -87,6 +90,9 @@ useEffect(() => {
       case "Goals":
         return <Goals />;
 
+      case "Users":
+        return <Users />;
+
       case "Settings":
         return <Settings />;
 
@@ -96,22 +102,27 @@ useEffect(() => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F3F1EC] md:flex-row">
+  <div className="flex min-h-screen flex-col bg-[#F3F1EC] md:flex-row">
 
-      <Sidebar
-        activePage={activePage}
-        onNavigate={setActivePage}
-      />
+      {/* Sidebar */}
+    <Sidebar
+      activePage={activePage}
+      onNavigate={setActivePage}
+    />
 
-      <main className="min-w-0 flex-1 p-5 md:p-8">
+      {/* Main Content */}
+    <main className="min-w-0 flex-1 p-5 md:p-8">
 
-        <Navbar userName={userName} />
+        {/* Navbar */}
+      <Navbar userName={userName} />
 
-        {renderPage()}
+        {/* Halaman Aktif */}
+         {renderPage()}
 
-        <footer className="mt-10 border-t border-gray-200 py-5 text-center text-xs text-gray-400">
-          © 2026 MoneyMate. Manage your money wisely.
-        </footer>
+        {/* Footer */}
+      <footer className="mt-10 border-t border-gray-200 py-5 text-center text-xs text-gray-400">
+        © 2026 MoneyMate. Manage your money wisely.
+      </footer>
 
       </main>
     </div>

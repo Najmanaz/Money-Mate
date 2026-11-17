@@ -9,6 +9,7 @@ import {
   Wallet,
   Menu,
   X,
+  Users,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -21,6 +22,7 @@ const menuItems = [
   { name: "Transactions", icon: ArrowLeftRight },
   { name: "Analytics", icon: ChartColumn },
   { name: "Goals", icon: Target },
+  { name: "Users", icon: Users },
   { name: "Settings", icon: Settings },
 ];
 
@@ -28,7 +30,6 @@ export default function Sidebar({
   activePage,
   onNavigate,
 }: SidebarProps) {
-
   const [isOpen, setIsOpen] = useState(false);
 
   function handleNavigate(page: string) {
@@ -47,7 +48,6 @@ export default function Sidebar({
     <>
       {/* MOBILE HEADER */}
       <div className="flex w-full items-center justify-between border-b border-gray-200 bg-white px-5 py-4 dark:border-gray-700 dark:bg-gray-900 md:hidden">
-
         <div className="flex items-center gap-2">
           <Wallet size={25} className="text-[#26354A] dark:text-white" />
           <h1 className="text-xl font-bold text-[#26354A] dark:text-white">
@@ -68,7 +68,6 @@ export default function Sidebar({
       {/* MOBILE MENU */}
       {isOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-
           <button
             className="absolute inset-0 bg-black/40"
             onClick={() => setIsOpen(false)}
@@ -76,7 +75,6 @@ export default function Sidebar({
           />
 
           <aside className="absolute left-0 top-0 flex h-full w-72 max-w-[85vw] flex-col bg-white p-6 text-gray-900 shadow-xl dark:bg-gray-900 dark:text-white">
-
             <div className="mb-12 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Wallet size={27} />
@@ -115,7 +113,6 @@ export default function Sidebar({
 
       {/* DESKTOP SIDEBAR */}
       <aside className="hidden min-h-screen w-64 shrink-0 flex-col border-r border-gray-200 bg-white p-6 text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-white md:flex">
-
         <div className="mb-12 flex items-center gap-2">
           <Wallet size={27} />
           <h1 className="text-2xl font-bold">MoneyMate</h1>
